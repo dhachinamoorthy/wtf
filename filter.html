@@ -1,0 +1,88 @@
+//factory services calc with order by filter
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myController">
+    <select name="title" id="title" ng-model="assgn" style="padding: 5px;">
+        <option value="">Select for sort</option>
+        <option value="n">Title</option>
+        <option value="c">Company</option>
+      </select >
+    <input type="text" ng-model="inp">
+     <table class="table table-bordered">
+        <tr class="bg-primary">
+            <th>Name</th>
+            <th>College</th>
+        </tr>
+        <tr ng-repeat="x in result | filter:inp |orderBy:assgn">
+            <td>{{x.n}}</td>
+            <td>{{x.c}}</td>
+        </tr>
+     </table>
+{{asd}}
+{{ab}}
+{{as}}
+{{b}}
+
+
+<!-- <input type="number" ng-model="a">
+<input type="number" ng-model="b">
+<button ng-click="add(a,b)">multiple and add</button>
+{{as}}
+{{b}} -->
+
+</body>
+<script>
+    var app = angular.module('myApp',[]);
+    app.controller('myController',function($scope,ser,fact){
+        $scope.result = [{"n":"Ajit", "c":"TCE"},{"n":"Rakul", "c":"SIT"},{"n":"akul", "c":"tce"}];
+        $scope.asd=ser.square(10);
+        $scope.as=ser.aa(10);
+        $scope.ab=ser.ss(10);
+        $scope.b=fact.multiply(5,5);
+        // $scope.add=function(a,b){
+//     $scope.as=fact.add(a,b);
+//     $scope.b=fact.multiply(a,b);
+// };
+    })
+
+
+    app.factory('fact',function(){
+        var factory={}
+        factory.multiply=function(a,b){
+            return a*b
+        }
+        factory.add=function(a,b){
+            return a+b
+        }
+        factory.sub=function(a,b){
+            return a-b
+        }
+        return factory
+    })
+
+    app.service('ser',function(fact){
+
+        this.square=function(a){
+            return fact.multiply(a,100)
+        }
+        this.aa=function(a){
+            return fact.add(a,100)
+        }
+         this.ss=function(a){
+            return fact.sub(a,100)
+        }
+    })
+
+
+
+</script>
+</html>
