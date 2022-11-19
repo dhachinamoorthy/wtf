@@ -1,0 +1,76 @@
+Angular Login Form
+
+<html>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body> <h1>Custom Service</h1>
+<div ng-app="a">
+<div ng-controller="b">
+
+    <custdir></custdir><br>
+
+    <custdi></custdi>
+
+<button ng-click="add()">add</button>
+<ul ng-repeat="x in class">
+<li>{{x.id}}</li>
+<li>{{x.name}}</li>
+</ul>
+<button ng-click="remove()">delete</button>
+<button ng-click="val()">log</button>
+<p>{{result}}</p>
+</div>
+</div>
+<script>
+var app=angular.module("a",[]);
+app.controller("b",function($scope){
+$scope.class=[];
+
+$scope.val=function(){
+    if($scope.id1=='na' && $scope.name1=='na'){
+    $scope.result='validated';
+    }
+    else{
+        $scope.result='not validated';
+    }
+};
+
+$scope.add=function()
+{
+    var i={id:$scope.id,name:$scope.name};
+    $scope.class.push(i);
+};
+
+$scope.remove=function()
+{
+    var j={id:$scope.id,name:$scope.name};
+    $scope.class.splice(j);
+}
+
+
+});
+
+app.directive("custdir",function(){
+    return {
+    template:'id<input type="number" ng-model="id">'+
+    'name<input type="text" ng-model="name">'
+    };
+});
+
+// app.directive("custdirdel",function(){
+//     return {
+//     template:'id<input type="number" ng-model="id2">'+
+//     'name<input type="text" ng-model="name2">'
+//     };
+// });
+
+app.directive("custdi",function(){
+    return {
+    template:'name<input type="text" ng-model="id1">'+'<br>'+
+    'password<input type="password" ng-model="name1">'
+    };
+});
+
+</script>
+</body>
+</html>

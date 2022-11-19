@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>Factory Example 2</title>
+    <script src=
+"https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js">
+    </script>
+    <script>
+        var application = angular.module('myApp', []);
+  
+        application.factory('MyFactoryService', function() {
+            var factory = {};
+            factory.Subtract = function(a, b) {
+                return a - b;
+            };
+            factory.Add = function(a, b) {
+                return a + b;
+            };
+            return factory;
+        });
+  
+        application.controller('thisapp', function(
+                               $scope, MyFactoryService) {
+            $scope.result = function() {
+                $scope.results = 
+                  MyFactoryService.Subtract($scope.num1, $scope.num2)
+            };
+            $scope.result2 = function() {
+                $scope.results = 
+                  MyFactoryService.Add($scope.num1, $scope.num2)
+            };
+        });
+    </script>
+</head>
+  
+<body>
+    <h1 style="color:green">GeeksforGeeks</h1>
+    <h2>Factory Example 2</h2>
+    <div ng-app="myApp" ng-controller="thisapp">
+        <p>
+            Enter A Number:
+            <input type="number" ng-model="num1" />
+            <br/> Enter A Number:
+            <input type="number" ng-model="num2" />
+            <br/>
+        </p>
+        <button ng-click="result()">Subtract</button>
+        <button ng-click="result2()">Add</button>
+        <p>Results: {{results}}
+    </div>
+</body>
+  
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Heart</title>
+<style type="text/css">
+div.heart{
+display: block;
+margin:100px;
+width: 100px;
+height: 100px;
+background-color: red ;
+position: relative;
+transform: rotateZ(-45deg);
+}
+div.heart:after,
+div.heart:before{
+display: block;
+content:'';
+width: 100px;
+height: 100px;
+background-color: red;
+border-color: blue;
+border-radius: 50px;
+position: absolute; 
+}
+div.heart:after{
+top: -50px;
+left:0;
+}
+div.heart:before{
+top:0;
+left: 50px;
+}
+</style>
+</head>
+<body>
+<div class="heart"></div> 
+</body>
+</html>

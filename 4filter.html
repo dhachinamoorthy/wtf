@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<p>Click the table headers to change the sorting order:</p>
+
+<div ng-app="myApp" ng-controller="namesCtrl">
+
+<table border="1" width="100%">
+<tr>
+<th ng-click="orderByMe('name')">Name</th>
+<th ng-click="orderByMe('country')">Country</th>
+</tr>
+<tr ng-repeat="x in names | orderBy:myOrderBy">
+<td>{{x.name | uppercase}}</td>
+<td>{{x.country | lowercase}}</td>
+<td>{{x.money | currency:'Rs'}}</td>
+</tr>
+</table>
+
+</div>
+
+<script>
+angular.module('myApp', []).controller('namesCtrl', function($scope) {
+    $scope.names = [
+        {name:'Jani',country:'Norway', money:'100'},
+        {name:'Carl',country:'Sweden' , money:'100'},
+        {name:'Margareth',country:'England', money:'100'},
+        {name:'Hege',country:'Norway', money:'100'},
+        {name:'Joe',country:'Denmark', money:'100'},
+        {name:'Gustav',country:'Sweden', money:'100'}
+        ];
+    $scope.orderByMe = function(x) {
+        $scope.myOrderBy = x;
+    }
+});
+</script>
+
+</body>
+</html>
